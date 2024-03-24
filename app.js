@@ -4,7 +4,8 @@ const path = require("path");
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
-const { publicDecrypt } = require("crypto");
+const contactusRoutes = require("./routes/contactus");
+const successRoutes = require("./routes/success");
 
 const app = express();
 
@@ -15,13 +16,9 @@ app.use("/admin", adminRoutes);
 
 app.use("/shop", shopRoutes);
 
-app.use("/contactus", (req, res, next) => {
-  res.sendFile(path.join(__dirname, "views", "contact-us.html"));
-});
+app.use("/contactus", contactusRoutes);
 
-app.use("/success", (req, res, next) => {
-  res.send("<h1>Form successfully filled</h1>");
-});
+app.use("/success", successRoutes);
 
 app.use((req, res, next) => {
   res
